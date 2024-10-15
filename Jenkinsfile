@@ -15,7 +15,7 @@ pipeline {
             steps {
                 // Se o docker-compose.yml estiver no mesmo diretório, use '.'
                 dir('.') {
-                    sh pwd
+                    sh "cd /home/pf1776/spring-h2-maven"
                     sh 'docker-compose up -d'
                 }
             }
