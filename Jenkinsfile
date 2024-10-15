@@ -16,8 +16,8 @@ pipeline {
                 script {
                     // Executa comandos na máquina remota usando usuário e senha
                     sh """
-                    sshpass -p '${env.USERNAME_PSW}' ssh -o StrictHostKeyChecking=no ${env.USERNAME_USR}@remote-server-ip '
-                    cd /caminho/para/o/docker-compose &&
+                    sshpass -p '${env.USERNAME_PSW}' ssh -o StrictHostKeyChecking=no ${env.USERNAME_USR}@http://52.152.228.195'
+                    cd /home/pf1776/spring-h2-maven &&
                     docker-compose up -d
                     '
                     """
