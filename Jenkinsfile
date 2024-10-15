@@ -4,16 +4,23 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                dir('.') {
-                    sh 'mvn clean package'
-                }
+                sh 'mvn clean package'
             }
         }
 
         stage('Deploy') {
+            environment {
+                USERNAME = credentials('ssh-user-password')
+            }
             steps {
-                dir('.') {
-                    sh 'docker-compose up -d'
+                script {
+                    // Executa comandos na máquina remota usando usuário e senha
+                    sh """
+                    sshpass -p '${env.USERNAME_PSW}' ssh -o StrictHostKeyChecking=no ${env.USERNAME_USR}@remote-server-ip '
+                    cd /caminho/para/o/docker-compose &&
+                    docker-compose up -d
+                    '
+                    """
                 }
             }
         }
