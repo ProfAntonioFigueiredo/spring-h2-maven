@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                dir('pom.xml') {
+                dir('spring-h2-maven') {
                     sh 'mvn clean package'
                 }
             }
@@ -12,7 +12,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                dir('jenkins') {
+                dir('spring-h2-maven') {
                     sh 'docker-compose up -d'
                 }
             }
