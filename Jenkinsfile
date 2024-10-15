@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                dir('spring-h2-maven/pom.xml') {
+                dir('pom.xml') {
                     sh 'mvn clean package'
                 }
             }
