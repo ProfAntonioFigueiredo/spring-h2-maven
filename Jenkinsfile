@@ -15,6 +15,7 @@ pipeline {
             steps {
                 // Se o docker-compose.yml estiver no mesmo diretório, use '.'
                 dir('.') {
+                    sh pwd
                     sh 'docker-compose up -d'
                 }
             }
